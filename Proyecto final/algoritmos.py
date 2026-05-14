@@ -1,12 +1,5 @@
 """
 algoritmos.py
-=============
-Los 10 algoritmos metaheurísticos del repositorio como funciones
-N-dimensionales, sin visualización, listos para evaluación masiva.
-
-Todos comparten la misma firma:
-    algo(func, dim, bounds, num_iter, init_positions, **kwargs)
-        → (best_pos, best_val, start_pos, elapsed_time)
 
 Donde:
     func            : callable f(x: ndarray) → float  (maximización)
@@ -24,7 +17,7 @@ import numpy as np
 import time
 
 
-# ─── Utilidad interna ────────────────────────────────────────
+
 def _to2d(arr: np.ndarray, dim: int) -> np.ndarray:
     """Garantiza array 2-D de forma (n, dim)."""
     arr = np.array(arr, dtype=float)

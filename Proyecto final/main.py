@@ -1,37 +1,16 @@
-"""
-main.py
-=======
-Archivo principal del proyecto de metaheurísticos.
-
-Evalúa TODOS los algoritmos × TODAS las funciones objetivo ×
-AMBOS métodos de inicialización × dimensiones 3 y 10.
-
-Por cada combinación se realizan N_RUNS ejecuciones independientes
-para calcular las métricas estadísticas (AD, MD, SD).
-
-Al finalizar exporta un archivo Excel con la tabla de resultados.
-
-Uso:
-    python main.py
-
-Requisitos adicionales (instalar si hace falta):
-    pip install pandas openpyxl
-"""
 
 import os
 import time
 import numpy as np
 import pandas as pd
-
-# ── Módulos del proyecto ────────────────────────────────────
+#Módulos del proyecto 
 from funciones_objetivo import ackley, peaks, sphere, rastrigin
 from metodos_inicializacion import inicializacion_lhs, maximin_distance
 from algoritmos import (abc, aco, bat, fa, ga, hs, pso,
                         hill_climbing, random_search, local_search)
 
-# ════════════════════════════════════════════════════════════
+
 #  CONFIGURACIÓN GLOBAL
-# ════════════════════════════════════════════════════════════
 OUTPUT_PATH = r"C:\Users\marqu\Desktop\METAURISTICOS\Proyecto final\resultados_metauristicos.xlsx"
 
 N_RUNS   = 30        # ejecuciones independientes por combinación (para estadísticas)
@@ -40,7 +19,7 @@ N_POP    = 20        # tamaño de población (≥ 2 requerido)
 BOUNDS   = (-3.0, 3.0)
 DIMS     = [3, 10]   # dimensiones a evaluar: primero 3D, luego 10D
 
-# ── Registro de algoritmos ───────────────────────────────────
+#Registro de algoritmos 
 ALGORITHMS = {
     'ABC':                abc,
     'ACO':                aco,
@@ -54,7 +33,7 @@ ALGORITHMS = {
     'Busqueda Local':     local_search,
 }
 
-# ── Registro de funciones objetivo ───────────────────────────
+#Registro de funciones objetivo 
 FUNCTIONS = {
     'Ackley':    ackley,
     'Peaks':     peaks,
@@ -62,16 +41,16 @@ FUNCTIONS = {
     'Rastrigin': rastrigin,
 }
 
-# ── Métodos de inicialización ────────────────────────────────
+#Métodos de inicialización 
 INIT_METHODS = {
     'LHS':     inicializacion_lhs,
     'Maximin': maximin_distance,
 }
 
 
-# ════════════════════════════════════════════════════════════
+
 #  FUNCIÓN PRINCIPAL
-# ════════════════════════════════════════════════════════════
+
 def main():
     lo, hi = BOUNDS
     rows   = []
@@ -183,9 +162,8 @@ def main():
                           f"→ AD={ad:+.4f}  SD={sd:.4f}  "
                           f"t={t_p:.3f}s  (ETA {eta:.0f}s)")
 
-    # ════════════════════════════════════════════════════════
     #  EXPORTAR A EXCEL
-    # ════════════════════════════════════════════════════════
+  
     column_order = [
         'Algoritmo',
         'Funcion Objetivo',

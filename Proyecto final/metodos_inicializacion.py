@@ -1,9 +1,5 @@
 """
 metodos_inicializacion.py
-=========================
-Métodos de inicialización de poblaciones para N dimensiones.
-
-Funciones disponibles:
   inicializacion_lhs   – Latin Hypercube Sampling
   maximin_distance     – Selección maximin desde un pool LHS
 """
@@ -13,23 +9,6 @@ import numpy as np
 
 def inicializacion_lhs(n_samples: int, dim: int, lo: float, hi: float,
                        rng=None) -> np.ndarray:
-    """
-    Latin Hypercube Sampling (LHS).
-
-    Genera `n_samples` puntos en [lo, hi]^dim con buena cobertura
-    del espacio mediante permutaciones por dimensión.
-
-    Parámetros
-    ----------
-    n_samples : número de muestras
-    dim       : número de dimensiones
-    lo, hi    : límites del dominio (escalares)
-    rng       : numpy.random.Generator (opcional, para reproducibilidad)
-
-    Retorna
-    -------
-    array de forma (n_samples, dim) con valores en [lo, hi]
-    """
     if rng is None:
         rng = np.random.default_rng()
 
@@ -49,25 +28,6 @@ def inicializacion_lhs(n_samples: int, dim: int, lo: float, hi: float,
 
 def maximin_distance(n_samples: int, dim: int, lo: float, hi: float,
                      pool_size: int = None, rng=None) -> np.ndarray:
-    """
-    Selección Maximin desde un pool LHS grande.
-
-    Genera un pool grande de candidatos LHS y selecciona de forma
-    greedy los `n_samples` puntos que maximizan la distancia mínima
-    entre pares (estrategia maximin).
-
-    Parámetros
-    ----------
-    n_samples : número de puntos a seleccionar
-    dim       : número de dimensiones
-    lo, hi    : límites del dominio (escalares)
-    pool_size : tamaño del pool de candidatos (default = max(150, n_samples·8))
-    rng       : numpy.random.Generator (opcional)
-
-    Retorna
-    -------
-    array de forma (n_samples, dim)
-    """
     if rng is None:
         rng = np.random.default_rng()
     if pool_size is None:

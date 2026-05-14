@@ -1,11 +1,5 @@
 """
 funciones_objetivo.py
-=====================
-Funciones matemáticas de prueba en N dimensiones.
-Todas las funciones están formuladas para MAXIMIZACIÓN
-(coherente con los algoritmos originales del proyecto).
-
-Funciones disponibles:
   ackley    – función Ackley generalizada a N dims
   peaks     – función Peaks (usa solo las 2 primeras dims)
   sphere    – función Sphere negada (maximizar = minimizar x²)
